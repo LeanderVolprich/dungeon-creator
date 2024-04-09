@@ -11,16 +11,16 @@ function App() {
 
   const materials = {
     Background: [
-      { name: 'Grass', value: 0, color: 'green', layer: 'Background' },
-      { name: 'Water', value: 1, color: 'blue', layer: 'Background' },
+      { name: 'Grass', value: 1, color: 'green', layer: 'Background' },
+      { name: 'Water', value: 2, color: 'blue', layer: 'Background' },
     ],
     Foreground: [
-      { name: 'Tree', value: 2, color: 'darkgreen', layer: 'Foreground' },
-      { name: 'Rock', value: 3, color: 'gray', layer: 'Foreground' },
+      { name: 'Tree', value: 3, color: 'darkgreen', layer: 'Foreground' },
+      { name: 'Rock', value: 4, color: 'gray', layer: 'Foreground' },
     ],
     Objects: [
-      { name: 'Treasure', value: 4, color: 'yellow', layer: 'Objects' },
-      { name: 'Enemy', value: 5, color: 'red', layer: 'Objects' },
+      { name: 'Treasure', value: 5, color: 'yellow', layer: 'Objects' },
+      { name: 'Enemy', value: 6, color: 'red', layer: 'Objects' },
     ],
   };
 

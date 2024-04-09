@@ -3,12 +3,12 @@ import React from "react";
 const Cell = ({ type, onClick, style }) => {
   const allMaterials = [
     { name: "Empty", value: 0, color: "transparent" }, // Consider empty as transparent
-    { name: "Grass", value: 0, color: "green" },
-    { name: "Water", value: 1, color: "blue" },
-    { name: "Tree", value: 2, color: "darkgreen" },
-    { name: "Rock", value: 3, color: "gray" },
-    { name: "Treasure", value: 4, color: "yellow" },
-    { name: "Enemy", value: 5, color: "red" },
+    { name: "Grass", value: 1, color: "green" },
+    { name: "Water", value: 2, color: "blue" },
+    { name: "Tree", value: 3, color: "darkgreen" },
+    { name: "Rock", value: 4, color: "gray" },
+    { name: "Treasure", value: 5, color: "yellow" },
+    { name: "Enemy", value: 6, color: "red" },
     // Add other materials as needed
   ];
 
