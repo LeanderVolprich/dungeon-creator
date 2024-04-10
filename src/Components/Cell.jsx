@@ -29,3 +29,4 @@ const Cell = ({ type, onClick, style }) => {
     };
 
 export default Cell;
+
