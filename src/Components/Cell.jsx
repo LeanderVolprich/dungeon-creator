@@ -18,7 +18,7 @@ const Cell = ({ type, onClick, style }) => {
 
       // Determine how to render the cell based on material type
       return (
-        <div onClick={onClick} style={{ ...style, position: 'relative', width: '40px', height: '40px' }}>
+        <div onClick={onClick} style={{ ...style, position: 'relative', width: '50px', height: '50px' }}>
           {material?.image ? (
             <img src={material.image} alt={material.name} style={{ width: '100%', height: '100%' }} />
           ) : (
