@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Grid from "./Components/Grid";
 import Sidebar from "./Components/Sidebar";
+import goblinImage from "./Images/Goblin.png";
 
 function App() {
   const [setupComplete, setSetupComplete] = useState(false);
@@ -11,21 +12,27 @@ function App() {
 
   const materials = {
     Background: [
-      { name: 'Grass', value: 1, color: 'green', layer: 'Background' },
-      { name: 'Water', value: 2, color: 'blue', layer: 'Background' },
+      { name: "Nothing", value: 0, color: "transparent", layer: "Background" },
+      { name: "Grass", value: 1, color: "green", layer: "Background" },
+      { name: "Water", value: 2, color: "blue", layer: "Background" },
     ],
     Foreground: [
-      { name: 'Tree', value: 3, color: 'darkgreen', layer: 'Foreground' },
-      { name: 'Rock', value: 4, color: 'gray', layer: 'Foreground' },
+      { name: "Nothing", value: 0, color: "transparent", layer: "Foreground" },
+      { name: "Tree", value: 3, color: "darkgreen", layer: "Foreground" },
+      { name: "Rock", value: 4, color: "gray", layer: "Foreground" },
     ],
     Objects: [
-      { name: 'Treasure', value: 5, color: 'yellow', layer: 'Objects' },
-      { name: 'Enemy', value: 6, color: 'red', layer: 'Objects' },
+      { name: "Nothing", value: 0, color: "transparent", layer: "Objects" },
+      { name: "Treasure", value: 5, color: "yellow", layer: "Objects" },
+      { name: "Enemy", value: 6, image: goblinImage || "/Goblin.png", layer: "Objects" },
     ],
   };
 
   const handleDimensionChange = (e) => {
-    setDimensions({ ...dimensions, [e.target.name]: parseInt(e.target.value, 10) || 0 });
+    setDimensions({
+      ...dimensions,
+      [e.target.name]: parseInt(e.target.value, 10) || 0,
+    });
   };
 
   const initializeGrid = (x, y) => {
@@ -53,7 +60,9 @@ function App() {
     setSelectedMaterial(material);
 
     // Automatically switch to the correct layer
-    const layerIndex = layers.findIndex(layer => layer.name === material.layer);
+    const layerIndex = layers.findIndex(
+      (layer) => layer.name === material.layer
+    );
     if (layerIndex !== -1) {
       setActiveLayerIndex(layerIndex);
     }
@@ -62,9 +71,9 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLayers([
-      { name: 'Background', grid: initializeGrid(dimensions.x, dimensions.y) },
-      { name: 'Foreground', grid: initializeGrid(dimensions.x, dimensions.y) },
-      { name: 'Objects', grid: initializeGrid(dimensions.x, dimensions.y) }, // Initialize the Objects layer
+      { name: "Background", grid: initializeGrid(dimensions.x, dimensions.y) },
+      { name: "Foreground", grid: initializeGrid(dimensions.x, dimensions.y) },
+      { name: "Objects", grid: initializeGrid(dimensions.x, dimensions.y) }, // Initialize the Objects layer
     ]);
     setSetupComplete(true);
   };
@@ -73,9 +82,20 @@ function App() {
     return (
       <form onSubmit={handleSubmit}>
         <label>
-          Choose your Dungeon size:
-          X = <input type="number" name="x" value={dimensions.x} onChange={handleDimensionChange} />
-          Y = <input type="number" name="y" value={dimensions.y} onChange={handleDimensionChange} />
+          Choose your Dungeon size: X ={" "}
+          <input
+            type="number"
+            name="x"
+            value={dimensions.x}
+            onChange={handleDimensionChange}
+          />
+          Y ={" "}
+          <input
+            type="number"
+            name="y"
+            value={dimensions.y}
+            onChange={handleDimensionChange}
+          />
         </label>
         <button type="submit">Set Dungeon Size</button>
       </form>
@@ -83,7 +103,7 @@ function App() {
   }
 
   return (
-    <div className="App" style={{ display: 'flex' }}>
+    <div className="App" style={{ display: "flex" }}>
       <Sidebar materials={materials} onSelectMaterial={onSelectMaterial} />
       <div>
         <div>
@@ -92,15 +112,20 @@ function App() {
               key={index}
               onClick={() => setActiveLayerIndex(index)}
               style={{
-                backgroundColor: index === activeLayerIndex ? 'lightblue' : 'white',
-                color: index === activeLayerIndex ? 'white' : 'black',
+                backgroundColor:
+                  index === activeLayerIndex ? "lightblue" : "white",
+                color: index === activeLayerIndex ? "white" : "black",
               }}
             >
               {layer.name}
             </button>
           ))}
         </div>
-        <Grid layers={layers.map(layer => layer.grid)} activeLayerIndex={activeLayerIndex} onCellClick={handleCellClick} />
+        <Grid
+          layers={layers.map((layer) => layer.grid)}
+          activeLayerIndex={activeLayerIndex}
+          onCellClick={handleCellClick}
+        />
       </div>
     </div>
   );

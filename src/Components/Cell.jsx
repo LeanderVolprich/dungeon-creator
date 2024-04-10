@@ -1,4 +1,5 @@
 import React from "react";
+import goblinImage from '../Images/Goblin.png';
 
 const Cell = ({ type, onClick, style }) => {
   const allMaterials = [
@@ -8,28 +9,23 @@ const Cell = ({ type, onClick, style }) => {
     { name: "Tree", value: 3, color: "darkgreen" },
     { name: "Rock", value: 4, color: "gray" },
     { name: "Treasure", value: 5, color: "yellow" },
-    { name: "Enemy", value: 6, color: "red" },
+    { name: 'Enemy', value: 6, image: goblinImage }, // Directly using the imported image
     // Add other materials as needed
   ];
 
-  // Find the material object that matches the cell's type (value)
-  const material = allMaterials.find((material) => material.value === type);
+    const material = allMaterials.find(material => material.value === type);
+  
 
-  // Determine the cell's background color based on the material's color
-  const backgroundColor = material ? material.color : "transparent";
-
-  return (
-    <div
-      onClick={onClick}
-      style={{
-        ...style,
-        backgroundColor: backgroundColor, // Use the found color
-        width: "40px",
-        height: "40px",
-        border: "1px solid #ddd",
-      }}
-    />
-  );
-};
+      // Determine how to render the cell based on material type
+      return (
+        <div onClick={onClick} style={{ ...style, position: 'relative', width: '40px', height: '40px' }}>
+          {material?.image ? (
+            <img src={material.image} alt={material.name} style={{ width: '100%', height: '100%' }} />
+          ) : (
+            <div style={{ width: '100%', height: '100%', backgroundColor: material?.color || 'transparent' }} />
+          )}
+        </div>
+      );
+    };
 
 export default Cell;
